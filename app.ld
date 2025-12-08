@@ -4,17 +4,16 @@ SECTIONS
 {
     .text :
     {
-
         _stext = .;
 
         KEEP(*(.vectors))
 
-        *(.text*)
+        KEEP(*(.meta))
 
+        *(.text*)
         *(.rodata*)
         
         . = ALIGN(4);
-
         _etext = .;
     } > app
 
@@ -22,9 +21,7 @@ SECTIONS
     {
         . = ALIGN(4);
         _sdata = .;
-
         *(.data*)
-
         . = ALIGN(4);
         _edata = .;
     } > ram AT > app
@@ -33,7 +30,6 @@ SECTIONS
     {
         . = ALIGN(4);
         _sbss = .;
-
         *(.bss*)
         *(COMMON)
         . = ALIGN(4);
